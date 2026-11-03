@@ -1,0 +1,2152 @@
+==================================Binary search===============================================
+
+
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+struct Contact {
+    string name;
+    string phone;
+    string address;
+};
+
+// Linear Search
+int linearSearch(Contact c[], int n, string key) {
+    for (int i = 0; i < n; i++) {
+        if (c[i].name == key) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// Binary Search (contacts must be sorted by name)
+int binarySearch(Contact c[], int n, string key) {
+    int low = 0, high = n - 1;
+
+    while (low <= high) {
+        int mid = (low + high) / 2;
+
+        if (c[mid].name == key) {
+            return mid;
+        }
+        else if (c[mid].name < key) {
+            low = mid + 1;
+        }
+        else {
+            high = mid - 1;
+        }
+    }
+
+    return -1;
+}
+
+// Display contact details
+void displayContact(Contact c[], int index) {
+    if (index == -1) {
+        cout << "Contact not found\n";
+    }
+    else {
+        cout << "\nContact found!\n";
+        cout << "Name: " << c[index].name << endl;
+        cout << "Phone: " << c[index].phone << endl;
+        cout << "Address: " << c[index].address << endl;
+    }
+}
+
+int main() {
+    int n;
+    cout << "Enter number of contacts: ";
+    cin >> n;
+
+    Contact c[100];
+
+    for (int i = 0; i < n; i++) {
+        cout << "\nEnter contact " << i + 1 << " details:\n";
+        cout << "Name: ";
+        cin >> c[i].name;
+        cout << "Phone: ";
+        cin >> c[i].phone;
+        cout << "Address: ";
+        cin >> c[i].address;
+    }
+
+    // Sort contacts by name for binary search
+    sort(c, c + n, [](Contact a, Contact b) {
+        return a.name < b.name;
+    });
+
+    string key;
+    int choice, index;
+
+    do {
+        cout << "\n--- Phone Book ---\n";
+        cout << "1. Linear Search\n";
+        cout << "2. Binary Search\n";
+        cout << "3. Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cout << "Enter name to search: ";
+                cin >> key;
+                index = linearSearch(c, n, key);
+                displayContact(c, index);
+                break;
+
+            case 2:
+                cout << "Enter name to search: ";
+                cin >> key;
+                index = binarySearch(c, n, key);
+                displayContact(c, index);
+                break;
+
+            case 3:
+                cout << "Exiting...\n";
+                break;
+
+            default:
+                cout << "Invalid choice\n";
+        }
+
+    } while (choice != 3);
+
+    return 0;
+}
+
+
+====================Bubble sort====================================================================
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Student{
+    int rollNo;
+    string name;
+    float marks;
+};
+
+void inputStudent(Student s[],int n){
+    for (int i = 0; i < n; i++) {
+        cout << "\nEnter Roll No: ";
+        cin >> s[i].rollNo;
+
+        cout << "Enter Name: ";
+        cin >> s[i].name;
+
+        cout << "Enter Marks: ";
+        cin >> s[i].marks;
+    }
+}
+
+void displayStudents(Student s[], int n) {
+    cout << "\nRoll No\tName\tMarks\n";
+    for (int i = 0; i < n; i++) {
+        cout << s[i].rollNo << "\t"
+             << s[i].name << "\t"
+             << s[i].marks << endl;
+    }
+}
+
+void sortByMarks(Student s[],int n){
+    for(int i = 0;i<n;i++){
+        for(int j = 0;i<n - i - 1;j++){
+            if(s[j].marks > s[j+1].marks){
+                Student temp = s[j];
+                s[j]=s[j+1];
+                s[j+1] = temp;
+            }
+        }
+    }
+    cout << "Students sorted by marks (ascending).\n";
+}
+
+void sortByName(Student s[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (s[j].name > s[j + 1].name) {
+                Student temp = s[j];
+                s[j] = s[j + 1];
+                s[j + 1] = temp;
+            }
+        }
+    }
+    cout << "Students sorted by name (A to Z).\n";
+}
+
+int main() {
+    Student s[100];
+    int n, choice;
+
+    cout << "Enter number of students: ";
+    cin >> n;
+
+    inputStudent(s, n);
+
+    do {
+        cout << "\n--- Student Sorting System ---\n";
+        cout << "1. Sort by Marks\n";
+        cout << "2. Sort by Name\n";
+        cout << "3. Display Students\n";
+        cout << "4. Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                sortByMarks(s, n);
+                displayStudents(s, n);
+                break;
+
+            case 2:
+                sortByName(s, n);
+                displayStudents(s, n);
+                break;
+
+            case 3:
+                displayStudents(s, n);
+                break;
+
+            case 4:
+                cout << "Exiting...\n";
+                break;
+
+            default:
+                cout << "Invalid choice!\n";
+        }
+
+    } while (choice != 4);
+
+    return 0;
+}
+
+
+=================patient by name and age==========================================================
+
+#include<iostream>
+#include<string>
+using namespace std;
+
+struct Patient{
+    int id;
+    string name;
+    int age;
+};
+
+void inputPatient(Patient p[],int n){
+    for(int i =0;i<n;i++){
+        cout<<"Enter patient id: ";
+        cin>>p[i].id;
+        cout<<"Enter Name: ";
+        cin>>p[i].name;
+        cout<<"Enter age: ";
+        cin>>p[i].age;
+    }
+}
+
+void displayPatients(Patient p[], int n) {
+    cout << "\nPatient ID\tName\tAge\n";
+
+    for (int i = 0; i < n; i++) {
+        cout << p[i].id << "\t\t"
+             << p[i].name << "\t"
+             << p[i].age << endl;
+    }
+}
+
+void searchPatient(Patient p[],int n,int searchID){
+    for(int i = 0;i<n;i++){
+        if(p[i].id == searchID){
+            cout << "\nPatient Found!\n";
+            cout << "Patient ID: " << p[i].id << endl;
+            cout << "Name: " << p[i].name << endl;
+            cout << "Age: " << p[i].age << endl;
+            return;
+        }
+    }
+}
+
+void sortByAge(Patient p[],int n){
+    for(int i = 0;i<n-1;i++){
+        for(int j = 0;i<n-i-1;j++){
+            if(p[i].age > p[i+1].age){
+                Patient temp = p[j];
+                p[j] = p[j+1];
+                p[j+1] = temp;
+            }
+        }
+    }
+    cout<<"Patients sorted by age(ascending)";
+}
+
+void sortByName(Patient p[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (p[j].name > p[j + 1].name) {
+                Patient temp = p[j];
+                p[j] = p[j + 1];
+                p[j + 1] = temp;
+            }
+        }
+    }
+    cout << "Patients sorted by name (A to Z).\n";
+}
+
+int main() {
+    Patient p[100];
+    int n, choice, searchID;
+
+    cout << "Enter number of patients: ";
+    cin >> n;
+
+    inputPatient(p, n);
+
+    do {
+        cout << "\n--- Patient Record System ---\n";
+        cout << "1. Search Patient by ID\n";
+        cout << "2. Sort Patients by Age\n";
+        cout << "3. Sort Patients by Name\n";
+        cout << "4. Display Patients\n";
+        cout << "5. Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cout << "Enter Patient ID to search: ";
+                cin >> searchID;
+                searchPatient(p, n, searchID);
+                break;
+
+            case 2:
+                sortByAge(p, n);
+                displayPatients(p, n);
+                break;
+
+            case 3:
+                sortByName(p, n);
+                displayPatients(p, n);
+                break;
+
+            case 4:
+                displayPatients(p, n);
+                break;
+
+            case 5:
+                cout << "Exiting...\n";
+                break;
+
+            default:
+                cout << "Invalid choice!\n";
+        }
+
+    } while (choice != 5);
+
+    return 0;
+}
+
+
+===================ProductSLL===============================================================
+
+#include <iostream>
+using namespace std;
+
+struct Node {
+    Node* next;
+    int productId;
+    string name;
+    int quantity;
+    int price;
+};
+
+// Add Product
+Node* addProduct(Node* head) {
+    Node* newNode = new Node();
+
+    cout << "Enter Product ID: ";
+    cin >> newNode->productId;
+
+    cout << "Enter Product Name: ";
+    cin >> newNode->name;
+
+    cout << "Enter Quantity: ";
+    cin >> newNode->quantity;
+
+    cout << "Enter Price: ";
+    cin >> newNode->price;
+
+    newNode->next = nullptr;
+
+    if (head == nullptr) {
+        head = newNode;
+    }
+    else {
+        Node* temp = head;
+
+        while (temp->next != nullptr) {
+            temp = temp->next;
+        }
+
+        temp->next = newNode;
+    }
+
+    cout << "Product added successfully!\n";
+
+    return head;
+}
+
+// Remove Product
+Node* removeProduct(Node* head) {
+    int id;
+
+    cout << "Enter Product ID to remove: ";
+    cin >> id;
+
+    if (head == nullptr) {
+        cout << "Inventory is empty!\n";
+        return head;
+    }
+
+    if (head->productId == id) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+
+        cout << "Product removed successfully!\n";
+        return head;
+    }
+
+    Node* temp = head;
+
+    while (temp->next != nullptr) {
+        if (temp->next->productId == id) {
+            Node* del = temp->next;
+            temp->next = temp->next->next;
+
+            delete del;
+
+            cout << "Product removed successfully!\n";
+            return head;
+        }
+
+        temp = temp->next;
+    }
+
+    cout << "Product not found!\n";
+
+    return head;
+}
+
+// Display Products
+void displayProducts(Node* head) {
+    if (head == nullptr) {
+        cout << "Inventory is empty!\n";
+        return;
+    }
+
+    Node* temp = head;
+
+    cout << "\n--- Inventory Details ---\n";
+
+    while (temp != nullptr) {
+        cout << "\nProduct ID: " << temp->productId;
+        cout << "\nName: " << temp->name;
+        cout << "\nQuantity: " << temp->quantity;
+        cout << "\nPrice: " << temp->price;
+        cout << "\n-------------------------\n";
+
+        temp = temp->next;
+    }
+}
+
+// Search Product
+void searchProduct(Node* head) {
+    int id;
+
+    cout << "Enter Product ID to search: ";
+    cin >> id;
+
+    Node* temp = head;
+
+    while (temp != nullptr) {
+        if (temp->productId == id) {
+            cout << "\nProduct Found!\n";
+            cout << "Product ID: " << temp->productId << endl;
+            cout << "Name: " << temp->name << endl;
+            cout << "Quantity: " << temp->quantity << endl;
+            cout << "Price: " << temp->price << endl;
+
+            return;
+        }
+
+        temp = temp->next;
+    }
+
+    cout << "Product not found!\n";
+}
+
+// Main Function
+int main() {
+    Node* head = nullptr;
+    int choice;
+
+    do {
+        cout << "\n===== INVENTORY MANAGEMENT =====\n";
+        cout << "1. Add Product\n";
+        cout << "2. Remove Product\n";
+        cout << "3. Display Products\n";
+        cout << "4. Search Product\n";
+        cout << "5. Exit\n";
+
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                head = addProduct(head);
+                break;
+
+            case 2:
+                head = removeProduct(head);
+                break;
+
+            case 3:
+                displayProducts(head);
+                break;
+
+            case 4:
+                searchProduct(head);
+                break;
+
+            case 5:
+                cout << "Exiting Inventory System...\n";
+                break;
+
+            default:
+                cout << "Invalid choice!\n";
+        }
+
+    } while (choice != 5);
+
+    return 0;
+}
+
+
+====================================HospitalLL======================================================
+
+#include<iostream>
+using namespace std;
+
+struct Node{
+    int patientId;
+    string patientName;
+    string cond;
+    string add;
+    Node* next;
+};
+
+Node* addPatient(Node* head){
+    Node* newNode = new Node();
+
+    cout<<"Enter patient name: ";
+    cin>>newNode->patientName;
+
+    cout<<"Enter patient ID: ";
+    cin>>newNode->patientId;
+
+    cout<<"Enter patient condition: ";
+    cin>>newNode->cond;
+
+    cout<<"Enter address: ";
+    cin>>newNode->add;
+
+    newNode->next = nullptr;
+
+    if(head == nullptr){
+        return newNode;
+    }
+
+    Node* temp = head;
+
+    while(temp->next != nullptr){
+        temp = temp->next;
+    }
+
+    temp->next = newNode;
+
+    cout<<"Patient added successfully\n";
+    return head;
+}
+
+Node* removePatient(Node* head){
+    int id;
+
+    cout<<"Enter patient ID to delete: ";
+    cin>>id;
+
+    if(head == nullptr){
+        cout<<"No patient records\n";
+        return head;
+    }
+
+    if(head->patientId == id){
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        cout<<"Patient deleted successfully\n";
+        return head;
+    }
+
+    Node* temp = head;
+    Node* prev = nullptr;
+
+    while(temp != nullptr){
+        if(temp->patientId == id){
+            prev->next = temp->next;
+            delete temp;
+            cout<<"Patient deleted successfully\n";
+            return head;
+        }
+
+        prev = temp;
+        temp = temp->next;
+    }
+
+    cout<<"Patient not found\n";
+    return head;
+}
+
+void display(Node* head){
+    if(head == nullptr){
+        cout<<"No patient records\n";
+        return;
+    }
+
+    Node* temp = head;
+
+    while(temp != nullptr){
+        cout<<"\nPatient ID: "<<temp->patientId;
+        cout<<"\nPatient Name: "<<temp->patientName;
+        cout<<"\nCondition: "<<temp->cond;
+        cout<<"\nAddress: "<<temp->add<<endl;
+
+        temp = temp->next;
+    }
+}
+
+void searchPatient(Node* head){
+    int id;
+
+    cout<<"Enter patient ID to search: ";
+    cin>>id;
+
+    Node* temp = head;
+
+    while(temp != nullptr){
+        if(temp->patientId == id){
+            cout<<"\nPatient Details:";
+            cout<<"\nPatient ID: "<<temp->patientId;
+            cout<<"\nPatient Name: "<<temp->patientName;
+            cout<<"\nCondition: "<<temp->cond;
+            cout<<"\nAddress: "<<temp->add<<endl;
+            return;
+        }
+
+        temp = temp->next;
+    }
+
+    cout<<"Patient not found\n";
+}
+
+int main(){
+    int choice;
+    Node* head = nullptr;
+
+    do{
+        cout<<"\n\nHospital Record System";
+        cout<<"\n1. Add Patient";
+        cout<<"\n2. Remove Patient";
+        cout<<"\n3. Search Patient";
+        cout<<"\n4. Display All Patients";
+        cout<<"\n5. Exit";
+        cout<<"\nEnter choice: ";
+        cin>>choice;
+
+        switch(choice){
+            case 1:
+                head = addPatient(head);
+                break;
+
+            case 2:
+                head = removePatient(head);
+                break;
+
+            case 3:
+                searchPatient(head);
+                break;
+
+            case 4:
+                display(head);
+                break;
+
+            case 5:
+                cout<<"Exiting...";
+                break;
+
+            default:
+                cout<<"Invalid choice\n";
+        }
+
+    }while(choice != 5);
+
+    return 0;
+}
+
+=================================TRAINDLL=============================================================
+
+```cpp
+#include <iostream>
+using namespace std;
+
+struct Node {
+    Node* next;
+    Node* prev;
+    string name;
+};
+
+// Insert Station
+Node* insertNode(Node* head) {
+    Node* newNode = new Node();
+
+    newNode->next = nullptr;
+    newNode->prev = nullptr;
+
+    cout << "Enter station name: ";
+    cin >> newNode->name;
+
+    if (head == nullptr) {
+        head = newNode;
+    }
+    else {
+        Node* temp = head;
+
+        while (temp->next != nullptr) {
+            temp = temp->next;
+        }
+
+        temp->next = newNode;
+        newNode->prev = temp;
+    }
+
+    cout << "Station inserted successfully!\n";
+
+    return head;
+}
+
+// Delete Station
+Node* deleteStation(Node* head) {
+    if (head == nullptr) {
+        cout << "Stations not found\n";
+        return head;
+    }
+
+    string stationName;
+
+    cout << "Enter station name to delete: ";
+    cin >> stationName;
+
+    Node* temp = head;
+
+    while (temp != nullptr) {
+        if (temp->name == stationName) {
+
+            // Delete first station
+            if (temp == head) {
+                head = head->next;
+
+                if (head != nullptr) {
+                    head->prev = nullptr;
+                }
+            }
+
+            // Delete middle or last station
+            else {
+                temp->prev->next = temp->next;
+
+                if (temp->next != nullptr) {
+                    temp->next->prev = temp->prev;
+                }
+            }
+
+            delete temp;
+
+            cout << "Station deleted successfully!\n";
+            return head;
+        }
+
+        temp = temp->next;
+    }
+
+    cout << "Station not found!\n";
+
+    return head;
+}
+
+// Display Stations
+void display(Node* head) {
+    if (head == nullptr) {
+        cout << "No stations available\n";
+        return;
+    }
+
+    Node* temp = head;
+
+    cout << "\nTrain Route:\n";
+
+    while (temp != nullptr) {
+        cout << temp->name << " <-> ";
+        temp = temp->next;
+    }
+
+    cout << "NULL\n";
+}
+
+// Search Station
+void searchStation(Node* head) {
+    string stationName;
+
+    cout << "Enter station name to search: ";
+    cin >> stationName;
+
+    Node* temp = head;
+
+    while (temp != nullptr) {
+        if (temp->name == stationName) {
+            cout << "Station found successfully!\n";
+            cout << "Station Name: " << temp->name << endl;
+            return;
+        }
+
+        temp = temp->next;
+    }
+
+    cout << "Station not found!\n";
+}
+
+// Reverse Display
+void reverseDisplay(Node* head) {
+    if (head == nullptr) {
+        cout << "No stations available\n";
+        return;
+    }
+
+    Node* temp = head;
+
+    // Move to last node
+    while (temp->next != nullptr) {
+        temp = temp->next;
+    }
+
+    cout << "\nReverse Train Route:\n";
+
+    // Print in reverse direction
+    while (temp != nullptr) {
+        cout << temp->name << " <-> ";
+        temp = temp->prev;
+    }
+
+    cout << "NULL\n";
+}
+
+// Main Function
+int main() {
+    Node* head = nullptr;
+    int choice;
+
+    do {
+        cout << "\n===== TRAIN ROUTE MANAGEMENT =====\n";
+        cout << "1. Insert Station\n";
+        cout << "2. Delete Station\n";
+        cout << "3. Display Stations\n";
+        cout << "4. Search Station\n";
+        cout << "5. Reverse Display\n";
+        cout << "6. Exit\n";
+
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                head = insertNode(head);
+                break;
+
+            case 2:
+                head = deleteStation(head);
+                break;
+
+            case 3:
+                display(head);
+                break;
+
+            case 4:
+                searchStation(head);
+                break;
+
+            case 5:
+                reverseDisplay(head);
+                break;
+
+            case 6:
+                cout << "Exiting Train Route Management System\n";
+                break;
+
+            default:
+                cout << "Invalid choice!\n";
+        }
+
+    } while (choice != 6);
+
+    return 0;
+}
+
+
+
+=======================================MOVIEDLL=================================================
+
+
+#include<iostream>
+using namespace std;
+
+struct Node{
+    int movieId;
+    string title;
+    string genre;
+    int year;
+    Node* next;
+    Node* prev;
+};
+
+Node* addMovie(Node* head){
+    Node* newNode = new Node();
+
+    cout<<"Enter Movie ID: ";
+    cin>>newNode->movieId;
+
+    cout<<"Enter Movie Title: ";
+    cin>>newNode->title;
+
+    cout<<"Enter Genre: ";
+    cin>>newNode->genre;
+
+    cout<<"Enter Release Year: ";
+    cin>>newNode->year;
+
+    newNode->next = nullptr;
+    newNode->prev = nullptr;
+
+    if(head == nullptr){
+        head = newNode;
+    }
+    else{
+        Node* temp = head;
+
+        while(temp->next != nullptr){
+            temp = temp->next;
+        }
+
+        temp->next = newNode;
+        newNode->prev = temp;
+    }
+
+    cout<<"Movie added successfully";
+    return head;
+}
+
+Node* deleteMovie(Node* head){
+    if(head == nullptr){
+        cout<<"Movie collection is empty";
+        return head;
+    }
+
+    int id;
+    cout<<"Enter Movie ID to delete: ";
+    cin>>id;
+
+    Node* temp = head;
+
+    while(temp != nullptr){
+        if(temp->movieId == id){
+
+            if(temp == head){
+                head = head->next;
+
+                if(head != nullptr){
+                    head->prev = nullptr;
+                }
+            }
+            else{
+                temp->prev->next = temp->next;
+
+                if(temp->next != nullptr){
+                    temp->next->prev = temp->prev;
+                }
+            }
+
+            delete temp;
+            cout<<"Movie deleted successfully";
+            return head;
+        }
+
+        temp = temp->next;
+    }
+
+    cout<<"Movie not found";
+    return head;
+}
+
+void display(Node* head){
+    if(head == nullptr){
+        cout<<"Movie collection is empty";
+        return;
+    }
+
+    Node* temp = head;
+
+    while(temp != nullptr){
+        cout<<"\nMovie ID: "<<temp->movieId;
+        cout<<"\nTitle: "<<temp->title;
+        cout<<"\nGenre: "<<temp->genre;
+        cout<<"\nRelease Year: "<<temp->year;
+        cout<<"\n-------------------";
+
+        temp = temp->next;
+    }
+}
+
+void searchMovie(Node* head){
+    if(head == nullptr){
+        cout<<"Movie collection is empty";
+        return;
+    }
+
+    int id;
+    cout<<"Enter Movie ID to search: ";
+    cin>>id;
+
+    Node* temp = head;
+
+    while(temp != nullptr){
+        if(temp->movieId == id){
+            cout<<"\nMovie found!";
+            cout<<"\nMovie ID: "<<temp->movieId;
+            cout<<"\nTitle: "<<temp->title;
+            cout<<"\nGenre: "<<temp->genre;
+            cout<<"\nRelease Year: "<<temp->year;
+            return;
+        }
+
+        temp = temp->next;
+    }
+
+    cout<<"Movie not found";
+}
+
+void reverseDisplay(Node* head){
+    if(head == nullptr){
+        cout<<"Movie collection is empty";
+        return;
+    }
+
+    Node* temp = head;
+
+    while(temp->next != nullptr){
+        temp = temp->next;
+    }
+
+    cout<<"\nMovies in Reverse Order:\n";
+
+    while(temp != nullptr){
+        cout<<temp->movieId<<" "<<temp->title
+            <<" "<<temp->genre<<" "<<temp->year<<endl;
+
+        temp = temp->prev;
+    }
+}
+
+int main(){
+    Node* head = nullptr;
+    int choice;
+
+    do{
+        cout<<"\n\nMovie Collection Management";
+        cout<<"\n1. Add Movie";
+        cout<<"\n2. Delete Movie";
+        cout<<"\n3. Display All Movies";
+        cout<<"\n4. Search Movie";
+        cout<<"\n5. Display Movies in Reverse";
+        cout<<"\n6. Exit";
+
+        cout<<"\nEnter your choice: ";
+        cin>>choice;
+
+        switch(choice){
+            case 1:
+                head = addMovie(head);
+                break;
+
+            case 2:
+                head = deleteMovie(head);
+                break;
+
+            case 3:
+                display(head);
+                break;
+
+            case 4:
+                searchMovie(head);
+                break;
+
+            case 5:
+                reverseDisplay(head);
+                break;
+
+            case 6:
+                cout<<"Exiting...";
+                break;
+
+            default:
+                cout<<"Invalid choice";
+        }
+
+    }while(choice != 6);
+
+    return 0;
+}
+
+
+===================================================CUSTOMER QUEUE=================================
+
+
+#include <iostream>
+using namespace std;
+
+#define MAX 10
+
+struct Customer{
+    int id;
+    string name;
+};
+
+Customer q[MAX];
+int front = 0, rear = -1;
+
+void enqueue(){
+    if(rear == MAX-1){
+        cout << "Queue Full";
+        return;
+    }
+    rear++;
+    cin >> q[rear].id >> q[rear].name;
+    cout << "Customer Added";
+}
+
+void serve(){
+    if(front > rear){
+        cout << "No Customers";
+        return;
+    }
+    cout << "Serving " << q[front].id << " " << q[front].name;
+    front++;
+}
+
+void display(){
+    if(front > rear){
+        cout << "No Customers";
+        return;
+    }
+    for(int i=front;i<=rear;i++){
+        cout << "\n" << q[i].id << " " << q[i].name;
+    }
+}
+
+void peek(){
+    if(front > rear){
+        cout << "No Customers";
+        return;
+    }
+    cout << "Front: " << q[front].id << " " << q[front].name;
+}
+
+int main(){
+    int choice;
+
+    do {
+        cout << "\n1. Enqueue Customer";
+        cout << "\n2. Serve Customer";
+        cout << "\n3. Display All";
+        cout << "\n4. Front Customer";
+        cout << "\n5. Exit";
+        cout << "\nEnter Choice: ";
+        cin >> choice;
+
+        switch(choice) {
+            case 1:
+                enqueue();
+                break;
+            case 2:
+                serve();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                peek();
+                break;
+            case 5:
+                cout << "Exiting...";
+                break;
+            default:
+                cout << "Invalid Choice";
+        }
+    } while(choice != 5);
+
+    return 0;
+}
+
+
+=====================================BST========================================================
+
+
+#include <iostream>
+using namespace std;
+struct Node{
+    int data;
+    Node* left;
+    Node* right;
+};
+
+Node* createNode(int value){
+    Node* newNode = new Node;
+    newNode -> data = value;
+    newNode -> left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+
+Node* insertNode(Node* root,int value){
+    if(root == NULL){
+        return createNode(value);
+    }
+    if(root->data < value){
+        root->right = insertNode(root->right,value);
+    }else if(root->data > value){
+        root->left = insertNode(root->left,value);
+    }else{
+        cout<<"Duplicate entry not allowed";
+    }
+    return root;
+}
+
+void search(Node* root,int value){
+    if(root == NULL){
+        cout<<"Element not found";
+    }else if(root->data == value){
+        cout<<"Element found";
+    }else if(root->data < value){
+        search(root->right,value);
+    }else if(root->data > value){
+        search(root->left,value);
+    }
+}
+
+void inorder(Node* root){
+    if(root!= NULL){
+        inorder(root->left);
+        cout<<root->data;
+        inorder(root->right);
+    }
+}
+
+void preorder(Node* root){
+    if(root!= NULL){
+        cout<<root->data;
+        preorder(root->left);
+        preorder(root->right);
+    }
+}
+
+void postorder(Node* root){
+    if(root!= NULL){
+        postorder(root->left);
+        postorder(root->right);
+        cout<<root->data<<" ";
+    }
+}
+
+Node* findMin(Node* root){
+    while (root->left != NULL) {
+        root = root->left;
+    }
+    return root;
+}
+
+Node* deleteNode(Node* root,int value){
+    if(root == NULL){
+        cout<<"element not found";
+    }
+
+    if(value < root->data){
+        root->left = deleteNode(root->left,value);
+    }else if(value > root->data){
+        root->right = deleteNode(root->right,value);
+
+
+    }else{
+        if(root->left == NULL && root->right == NULL){
+            delete root;
+            return NULL;
+
+        }else if(root->left == NULL){
+            Node* temp = root->right;
+            delete root;
+            return temp;
+            
+        }else{
+            Node* temp = findMin(root->right);
+            root->data = temp->data;
+            root->right = deleteNode(root->right,temp->data);
+        }
+    }
+    return root;
+}
+
+int depth(Node* root){
+    if(root==NULL){
+        return 0;
+    }
+    int leftDepth = depth(root->left);
+    int rightDepth= depth(root->right);
+    if(leftDepth>rightDepth){
+        return leftDepth + 1;
+    }else{
+        return rightDepth + 1;
+    }
+}
+
+Node* copyTree(Node* root){
+    if(root == NULL){
+        return NULL;
+    }
+    Node* newNode = createNode(root->data);
+    newNode->left = copyTree(root->left);
+    newNode->right = copyTree(root->right);
+    return newNode;
+}
+
+void displayParentChild(Node* root){
+    if(root!=NULL){
+        if(root->left !=NULL && root->right != NULL){
+            cout<<"Parent: "<<root->data;
+            if(root->left != NULL){
+                cout<<"Left Child: "<<root->left->data;
+            }
+            if(root->right != NULL){
+                cout<<"RIght Child: "<<root->right->data;
+            }
+            cout<<endl;
+        }
+        displayParentChild(root->left);
+        displayParentChild(root->right);
+    }
+}
+
+void displayLeaf(Node* root){
+    if(root!=NULL){
+        if(root->left == NULL && root->right == NULL){
+            cout<<root->data<<" ";
+        }
+        displayLeaf(root->left);
+        displayLeaf(root->right);
+    }
+}
+
+int main() {
+    Node* root = NULL;
+    int choice, value;
+
+    do {
+        cout << "\n--- Binary Search Tree ---\n";
+        cout << "1. Insert\n";
+        cout << "2. Delete\n";
+        cout << "3. Search\n";
+        cout << "4. Display Traversals\n";
+        cout << "5. Display Depth\n";
+        cout << "6. Exit\n";
+
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cout << "Enter value: ";
+                cin >> value;
+                root = insertNode(root, value);
+                break;
+
+            case 2:
+                cout << "Enter value to delete: ";
+                cin >> value;
+                root = deleteNode(root, value);
+                break;
+
+            case 3:
+                cout << "Enter value to search: ";
+                cin >> value;
+                search(root, value);
+                break;
+
+            case 4:
+                cout << "Inorder: ";
+                inorder(root);
+
+                cout << "\nPreorder: ";
+                preorder(root);
+
+                cout << "\nPostorder: ";
+                postorder(root);
+
+                cout << endl;
+                break;
+
+            case 5:
+                cout << "Depth of tree: " << depth(root) << endl;
+                break;
+
+            case 6:
+                cout << "Exiting...\n";
+                break;
+
+            default:
+                cout << "Invalid choice!\n";
+        }
+
+    } while (choice != 6);
+
+    return 0;
+}
+
+================================================TEXT EDITOR=========================================
+
+#include <bits/stdc++.h>
+using namespace std;
+
+string text = "";
+
+stack<string> st;
+
+stack<string> redoStack;
+
+void insert() {
+    string word;
+
+    cout << "Enter word: ";
+    cin >> word;
+
+    st.push(text);
+    while (!redoStack.empty())
+        redoStack.pop();
+
+    text = text + word + " ";
+
+    cout << "Text: " << text << endl;
+}
+
+void Delete() {
+    if (text.empty()) {
+        cout << "Text is empty" << endl;
+        return;
+    }
+
+    st.push(text);
+    while (!redoStack.empty())
+        redoStack.pop();
+
+    while (!text.empty() && text.back() == ' ')
+        text.pop_back();
+
+    while (!text.empty() && text.back() != ' ')
+        text.pop_back();
+
+    cout << "Text: " << text << endl;
+}
+
+void Undo() {
+    if (st.empty()) {
+        cout << "Nothing to undo" << endl;
+        return;
+    }
+
+    redoStack.push(text);
+
+    text = st.top();
+    st.pop();
+
+    cout << "Undo: " << text << endl;
+}
+
+void Redo() {
+    if (redoStack.empty()) {
+        cout << "Nothing to redo" << endl;
+        return;
+    }
+
+    st.push(text);
+
+    text = redoStack.top();
+    redoStack.pop();
+
+    cout << "Redo: " << text << endl;
+}
+
+int main() {
+    int choice;
+
+    do {
+        cout << "\n1. Insert";
+        cout << "\n2. Delete";
+        cout << "\n3. Undo";
+        cout << "\n4. Redo";
+        cout << "\n5. Display";
+        cout << "\n0. Exit";
+
+        cout << "\nEnter choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: insert(); break;
+            case 2: Delete(); break;
+            case 3: Undo(); break;
+            case 4: Redo(); break;
+            case 5: cout << "Text: " << text << endl; break;
+            case 0: cout << "Exiting..."; break;
+            default: cout << "Invalid choice";
+        }
+
+    } while (choice != 0);
+
+    return 0;
+}
+
+=========================================HASHING====================================================
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+#define size 10
+
+struct Student {
+    int id;
+    string name;
+    float marks;
+    int used;   // 0 = empty, 1 = occupied, 2 = deleted
+};
+
+Student table[size];
+
+// Hash function
+int hashFunction(int id) {
+    return id % size;
+}
+
+// Add student
+void addStudent() {
+    Student s;
+
+    cout << "Enter student ID: ";
+    cin >> s.id;
+
+    cout << "Enter student name: ";
+    cin >> s.name;
+
+    cout << "Enter student marks: ";
+    cin >> s.marks;
+
+    int index = hashFunction(s.id);
+
+    for (int i = 0; i < size; i++) {
+        int pos = (index + i) % size;
+
+        if (table[pos].used == 1 && table[pos].id == s.id) {
+            cout << "Student ID already exists!\n";
+            return;
+        }
+
+        if (table[pos].used == 0 || table[pos].used == 2) {
+            table[pos] = s;
+            table[pos].used = 1;
+            cout << "Student added successfully!\n";
+            return;
+        }
+    }
+
+    cout << "Hash table is full!\n";
+}
+
+// Search student
+void searchStudent() {
+    int id;
+
+    cout << "Enter student ID to search: ";
+    cin >> id;
+
+    int index = hashFunction(id);
+
+    for (int i = 0; i < size; i++) {
+        int pos = (index + i) % size;
+
+        if (table[pos].used == 0) {
+            break;
+        }
+
+        if (table[pos].used == 1 && table[pos].id == id) {
+            cout << "\nStudent found!\n";
+            cout << "ID: " << table[pos].id << endl;
+            cout << "Name: " << table[pos].name << endl;
+            cout << "Marks: " << table[pos].marks << endl;
+            return;
+        }
+    }
+
+    cout << "Student not found!\n";
+}
+
+// Delete student
+void deleteStudent() {
+    int id;
+
+    cout << "Enter student ID to delete: ";
+    cin >> id;
+
+    int index = hashFunction(id);
+
+    for (int i = 0; i < size; i++) {
+        int pos = (index + i) % size;
+
+        if (table[pos].used == 0) {
+            break;
+        }
+
+        if (table[pos].used == 1 && table[pos].id == id) {
+            table[pos].used = 2;
+            cout << "Student deleted successfully!\n";
+            return;
+        }
+    }
+
+    cout << "Student not found!\n";
+}
+
+// Display all students
+void displayStudents() {
+    cout << "\n--- Student Records ---\n";
+
+    for (int i = 0; i < size; i++) {
+        if (table[i].used == 1) {
+            cout << "ID: " << table[i].id
+                 << " | Name: " << table[i].name
+                 << " | Marks: " << table[i].marks << endl;
+        }
+    }
+}
+
+int main() {
+    int choice;
+
+    do {
+        cout << "\n--- Student Information System ---\n";
+        cout << "1. Add Student\n";
+        cout << "2. Search Student\n";
+        cout << "3. Delete Student\n";
+        cout << "4. Display Students\n";
+        cout << "5. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                addStudent();
+                break;
+
+            case 2:
+                searchStudent();
+                break;
+
+            case 3:
+                deleteStudent();
+                break;
+
+            case 4:
+                displayStudents();
+                break;
+
+            case 5:
+                cout << "Exiting program...\n";
+                break;
+
+            default:
+                cout << "Invalid choice!\n";
+        }
+
+    } while (choice != 5);
+
+    return 0;
+}
+
+==========================================SPARSEMATRIX===================================================
+
+#include<iostream>
+using namespace std;
+
+int grades[4][4] = {
+    {0, 0, 0, 0},
+    {85, 0, 0, 0},
+    {0, 0, 0, 92},
+    {0, 0, 0, 0}
+};
+
+void calculateAvgGradeSub(){
+    for(int j = 0; j < 4; j++){
+        int sum = 0;
+        int count = 0;
+
+        for(int i = 0; i < 4; i++){
+            if(grades[i][j] != 0){
+                sum += grades[i][j];
+                count++;
+            }
+        }
+
+        if(count > 0){
+            int avg = sum / count;
+            cout << "Average marks: " << avg
+                 << " Subject: " << j + 1 << endl;
+        }
+        else{
+            cout << "No grades for Subject " << j + 1 << endl;
+        }
+    }
+}
+
+void highestGrade(){
+    int highest = 0;
+
+    for(int i = 0; i < 4; i++){
+        for(int j = 0; j < 4; j++){
+            if(grades[i][j] > highest){
+                highest = grades[i][j];
+            }
+        }
+    }
+
+    cout << "Highest Grade: " << highest << endl;
+
+    for(int i = 0; i < 4; i++){
+        for(int j = 0; j < 4; j++){
+            if(grades[i][j] == highest && highest != 0){
+                cout << "Student with highest grade: "
+                     << i + 1 << endl;
+            }
+        }
+    }
+}
+
+void subWithHighestAvgGrade(){
+    int maxAvg = 0;
+    int subject = -1;
+
+    for(int j = 0; j < 4; j++){
+        int sum = 0;
+        int count = 0;
+
+        for(int i = 0; i < 4; i++){
+            if(grades[i][j] != 0){
+                sum += grades[i][j];
+                count++;
+            }
+        }
+
+        if(count > 0){
+            int avg = sum / count;
+
+            if(avg > maxAvg){
+                maxAvg = avg;
+                subject = j + 1;
+            }
+        }
+    }
+
+    if(subject != -1){
+        cout << "Subject with highest average: "
+             << subject << endl;
+        cout << "Highest Average: " << maxAvg << endl;
+    }
+    else{
+        cout << "No grades available" << endl;
+    }
+}
+
+int main(){
+    int choice;
+
+    do{
+        cout << "\n--- Student Grade Management ---" << endl;
+        cout << "1. Calculate average grade of each subject" << endl;
+        cout << "2. Find student with highest grade" << endl;
+        cout << "3. Find subject with highest average grade" << endl;
+        cout << "0. Exit" << endl;
+
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch(choice){
+            case 1:
+                calculateAvgGradeSub();
+                break;
+
+            case 2:
+                highestGrade();
+                break;
+
+            case 3:
+                subWithHighestAvgGrade();
+                break;
+
+            case 0:
+                cout << "Exiting program..." << endl;
+                break;
+
+            default:
+                cout << "Invalid choice!" << endl;
+        }
+
+    }while(choice != 0);
+
+    return 0;
+}
+
+=========================================INFIX TO PRE & POST=========================================
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+// Operator Precedence
+int precedence(char op) {
+    if (op == '^') {
+        return 3;
+    }
+    else if (op == '*' || op == '/') {
+        return 2;
+    }
+    else if (op == '+' || op == '-') {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+
+// Check Operator
+bool isOperator(char ch) {
+    return ch == '+' || ch == '-' || ch == '*' ||
+           ch == '/' || ch == '^';
+}
+
+// Infix to Postfix
+string infixToPostfix(string infix) {
+    stack<char> s;
+    string postfix = "";
+
+    for (int i = 0; i < infix.length(); i++) {
+        char ch = infix[i];
+
+        if (ch == ' ') {
+            continue;
+        }
+
+        if (isalnum(ch)) {
+            postfix += ch;
+        }
+        else if (ch == '(') {
+            s.push(ch);
+        }
+        else if (ch == ')') {
+            while (!s.empty() && s.top() != '(') {
+                postfix += s.top();
+                s.pop();
+            }
+
+            if (!s.empty()) {
+                s.pop();
+            }
+        }
+        else if (isOperator(ch)) {
+            while (!s.empty() && s.top() != '(' &&
+                   (precedence(s.top()) > precedence(ch) ||
+                   (precedence(s.top()) == precedence(ch) && ch != '^'))) {
+
+                postfix += s.top();
+                s.pop();
+            }
+
+            s.push(ch);
+        }
+    }
+
+    while (!s.empty()) {
+        postfix += s.top();
+        s.pop();
+    }
+
+    return postfix;
+}
+
+// Infix to Prefix
+string infixToPrefix(string infix) {
+
+    // Reverse infix expression
+    reverse(infix.begin(), infix.end());
+
+    // Swap brackets
+    for (int i = 0; i < infix.length(); i++) {
+
+        if (infix[i] == '(') {
+            infix[i] = ')';
+        }
+        else if (infix[i] == ')') {
+            infix[i] = '(';
+        }
+    }
+
+    // Convert to postfix
+    string prefix = infixToPostfix(infix);
+
+    // Reverse postfix to get prefix
+    reverse(prefix.begin(), prefix.end());
+
+    return prefix;
+}
+
+// Main Function
+int main() {
+    string infix;
+    int choice;
+
+    cout << "Enter infix expression: ";
+    cin >> infix;
+
+    do {
+        cout << "\n--- Expression Conversion ---\n";
+        cout << "1. Convert to Postfix\n";
+        cout << "2. Convert to Prefix\n";
+        cout << "3. Display Both\n";
+        cout << "4. Exit\n";
+
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        switch (choice) {
+
+            case 1:
+                cout << "Postfix: " << infixToPostfix(infix) << endl;
+                break;
+
+            case 2:
+                cout << "Prefix: " << infixToPrefix(infix) << endl;
+                break;
+
+            case 3:
+                cout << "Postfix: " << infixToPostfix(infix) << endl;
+                cout << "Prefix: " << infixToPrefix(infix) << endl;
+                break;
+
+            case 4:
+                cout << "Exiting program...\n";
+                break;
+
+            default:
+                cout << "Invalid choice!\n";
+        }
+
+    } while (choice != 4);
+
+    return 0;
+}
+
+
+===============================================AVL=================================================
+
+#include <iostream>
+using namespace std;
+
+struct Node{
+    int data;
+    int height;
+    Node* left;
+    Node* right;
+};
+
+int height(Node* n){
+    if(n == NULL) return 0;
+    return n->height;
+}
+
+int balanceFactor(Node* n){
+    if(n == NULL) return 0;
+    return height(n->left) - height(n->right);
+}
+
+void updateHeight(Node* n){
+    n->height = 1 + max(height(n->left), height(n->right));
+}
+
+Node* rightRotate(Node* y){
+    Node* x = y->left;
+    y->left = x->right;
+    x->right = y;
+    updateHeight(y);
+    updateHeight(x);
+    return x;
+}
+
+Node* leftRotate(Node* x){
+    Node* y = x->right;
+    x->right = y->left;
+    y->left = x;
+    updateHeight(x);
+    updateHeight(y);
+    return y;
+}
+
+Node* balance(Node* n){
+    updateHeight(n);
+    int bf = balanceFactor(n);
+
+    if(bf > 1){                                  // left heavy
+        if(balanceFactor(n->left) < 0)
+            n->left = leftRotate(n->left);       // LR case
+        return rightRotate(n);                   // LL case
+    }
+    if(bf < -1){                                 // right heavy
+        if(balanceFactor(n->right) > 0)
+            n->right = rightRotate(n->right);    // RL case
+        return leftRotate(n);                    // RR case
+    }
+    return n;
+}
+
+Node* insert(Node* root, int data){
+    if(root == NULL){
+        Node* n = new Node;
+        n->data = data;
+        n->height = 1;
+        n->left = NULL;
+        n->right = NULL;
+        return n;
+    }
+    if(data < root->data)
+        root->left = insert(root->left, data);
+    else if(data > root->data)
+        root->right = insert(root->right, data);
+    else{
+        cout << "Duplicate not allowed";
+        return root;
+    }
+    return balance(root);
+}
+
+Node* del(Node* root, int data){
+    if(root == NULL) return NULL;
+
+    if(data < root->data)
+        root->left = del(root->left, data);
+    else if(data > root->data)
+        root->right = del(root->right, data);
+    else{
+        if(root->left == NULL) return root->right;
+        if(root->right == NULL) return root->left;
+
+        Node* temp = root->right;
+        while(temp->left != NULL) temp = temp->left;
+        root->data = temp->data;
+        root->right = del(root->right, temp->data);
+    }
+    return balance(root);
+}
+
+bool search(Node* root, int data){
+    if(root == NULL) return false;
+    if(data == root->data) return true;
+    if(data < root->data) return search(root->left, data);
+    return search(root->right, data);
+}
+
+void inorder(Node* root){
+    if(root == NULL) return;
+    inorder(root->left);
+    cout << root->data << " ";
+    inorder(root->right);
+}
+
+void preorder(Node* root){
+    if(root == NULL) return;
+    cout << root->data << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
+int main(){
+    Node* root = NULL;
+    int choice, x;
+
+    do {
+        cout << "\n1. Insert";
+        cout << "\n2. Delete";
+        cout << "\n3. Search";
+        cout << "\n4. Display";
+        cout << "\n5. Exit";
+        cout << "\nEnter Choice: ";
+        cin >> choice;
+
+        switch(choice) {
+            case 1:
+                cin >> x;
+                root = insert(root, x);
+                break;
+            case 2:
+                cin >> x;
+                root = del(root, x);
+                break;
+            case 3:
+                cin >> x;
+                if(search(root, x)) cout << "Found";
+                else cout << "Not Found";
+                break;
+            case 4:
+                cout << "Inorder: "; inorder(root);
+                cout << "\nPreorder: "; preorder(root);
+                break;
+            case 5:
+                cout << "Exiting...";
+                break;
+            default:
+                cout << "Invalid Choice";
+        }
+    } while(choice != 5);
+
+    return 0;
+}

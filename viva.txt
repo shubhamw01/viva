@@ -1,0 +1,904 @@
+============================================================ 1. LINEAR
+SEARCH AND BINARY SEARCH – PHONE BOOK
+============================================================
+
+DEFINITIONS Searching: The process of finding a particular element or
+record in a collection. Linear Search: Checks elements one by one until
+the required element is found or the collection ends. Binary Search:
+Searches a sorted collection by repeatedly checking the middle element
+and eliminating half of the remaining search range. Time Complexity:
+Describes how the running time of an algorithm grows as input size
+increases.
+
+WHAT TO SAY WHILE EXPLAINING “My program represents a phone book
+containing contact details. It allows the user to search for a contact
+using a key such as a name or phone number. I have implemented linear
+search and binary search and can compare their performance.”
+
+“Linear search starts from the first record and compares each record
+with the search key. If a match is found, it displays the contact
+details. If the loop finishes without a match, the contact is not
+present.”
+
+“Binary search works only on sorted data. It finds the middle element
+and compares it with the key. If the key is smaller, it searches the
+left half; if larger, it searches the right half. This process continues
+until the key is found or the search range becomes empty.”
+
+COMPLEXITY - Linear search: Best O(1), average O(n), worst O(n). -
+Binary search: Best O(1), average O(log n), worst O(log n). - Linear
+search works on sorted or unsorted data. - Binary search requires sorted
+data.
+
+IMPORTANT VIVA QUESTIONS Q: Why is binary search not suitable for an
+unsorted array? A: Because binary search decides which half to discard
+based on the ordering of elements. Without sorting, that decision is not
+reliable.
+
+Q: What is the main difference between linear and binary search? A:
+Linear search checks elements sequentially; binary search repeatedly
+divides a sorted search range into two halves.
+
+Q: What does (low + high) / 2 represent? A: It calculates the middle
+index of the current search range. In some languages, low + (high - low)
+/ 2 avoids integer overflow.
+
+Q: What happens if the element is not found? A: The algorithm terminates
+and reports that the record is not present.
+
+Q: Which is better? A: Binary search is faster for large sorted arrays.
+Linear search is simpler and can be used when data is unsorted or small.
+
+============================================================ 2. SORTING
+STUDENT RECORDS
+============================================================
+
+DEFINITIONS Sorting: Arranging data in a particular order, such as
+ascending or descending. Bubble Sort: Repeatedly compares adjacent
+elements and swaps them if they are in the wrong order. Selection Sort:
+Repeatedly selects the smallest element from the unsorted portion and
+places it at the correct position. Insertion Sort: Builds a sorted
+portion by taking one element at a time and inserting it into its
+correct position. Stable Sort: A sorting algorithm is stable if
+equal-key records retain their original relative order.
+
+WHAT TO SAY WHILE EXPLAINING “My program stores student records and
+sorts them according to marks or names. Each record contains student
+information, and the selected sorting algorithm compares the chosen
+field.”
+
+For Bubble Sort: “In every pass, adjacent records are compared. If they
+are in the wrong order, they are swapped. After each pass, the largest
+unsorted value moves towards the end.”
+
+For Selection Sort: “The algorithm finds the minimum element in the
+unsorted part and swaps it with the first element of that part. The
+sorted portion grows after every pass.”
+
+For Insertion Sort: “The first element is treated as sorted. The next
+element is picked and inserted into its correct position by shifting
+larger elements to the right.”
+
+COMPLEXITY - Bubble Sort: Best O(n) with an early-stop flag;
+average/worst O(n²). - Selection Sort: Best/average/worst O(n²). -
+Insertion Sort: Best O(n); average/worst O(n²). - Auxiliary space:
+Usually O(1) for these in-place implementations.
+
+IMPORTANT VIVA QUESTIONS Q: What is an in-place sorting algorithm? A: It
+sorts the data using a constant or very small amount of extra memory.
+
+Q: Which of these is suitable for nearly sorted data? A: Insertion Sort,
+because it performs fewer shifts when the data is nearly sorted.
+
+Q: Which algorithm performs the minimum number of swaps among these
+three in its usual form? A: Selection Sort, which performs at most one
+swap per pass.
+
+Q: What is the difference between comparison and swapping? A: Comparison
+checks the order of two values; swapping exchanges their positions.
+
+Q: Can records be sorted by name instead of marks? A: Yes. The
+comparison is performed using the name field rather than the marks
+field.
+
+============================================================ 3. HOSPITAL
+RECORD SYSTEM – SINGLY LINKED LIST
+============================================================
+
+DEFINITIONS Linked List: A linear data structure made of nodes that are
+connected using links or pointers. Node: A unit containing data and one
+or more links to other nodes. Singly Linked List: Each node stores data
+and a pointer to the next node. Head: Pointer/reference to the first
+node. NULL: Indicates that a pointer does not refer to another node.
+
+WHAT TO SAY WHILE EXPLAINING “My program manages patient records using a
+singly linked list. Each node stores patient details such as name, ID,
+and condition, along with a link to the next patient node.”
+
+“To add a patient, the program creates a new node and connects it to the
+list. To remove a patient, it searches for the required ID and changes
+the links so that the node is bypassed. To display or search, it
+traverses the list from the head until the required node or the end is
+reached.”
+
+COMPLEXITY - Insert at beginning: O(1). - Insert at end: O(n), unless a
+tail pointer is maintained; then O(1). - Search: O(n). - Delete by ID:
+O(n) because searching is required. - Display all: O(n).
+
+IMPORTANT VIVA QUESTIONS Q: Why use a linked list instead of an array?
+A: A linked list can grow or shrink dynamically and does not require
+contiguous memory. Arrays allow direct indexing, while linked lists
+require traversal.
+
+Q: What is stored in each node? A: Patient data and a pointer/reference
+to the next node.
+
+Q: What is traversal? A: Visiting nodes one by one by following their
+links.
+
+Q: What is a dangling pointer? A: A pointer that refers to memory that
+is no longer valid, for example after a node is freed.
+
+Q: What is the condition for an empty list? A: The head pointer is NULL.
+
+============================================================ 4. TRAIN
+ROUTE MANAGEMENT – DOUBLY LINKED LIST
+============================================================
+
+DEFINITIONS Doubly Linked List: A linked list in which each node has
+data, a pointer to the next node, and a pointer to the previous node.
+Previous Pointer: Link to the preceding node. Next Pointer: Link to the
+following node.
+
+WHAT TO SAY WHILE EXPLAINING “My program represents train stations using
+a doubly linked list. Each node stores station information and two
+links: one to the next station and one to the previous station.”
+
+“This structure supports forward and reverse traversal. Insertion and
+deletion involve updating the previous and next links of neighboring
+nodes. Searching checks stations one by one.”
+
+COMPLEXITY - Insert/delete at a known node: O(1), after locating the
+node. - Search by station name: O(n). - Forward or reverse display:
+O(n). - Finding a node by value: O(n).
+
+IMPORTANT VIVA QUESTIONS Q: Why use a doubly linked list here? A: Train
+routes can be displayed in both forward and reverse directions.
+
+Q: What is the disadvantage compared with a singly linked list? A: It
+uses extra memory for the previous pointer and requires more link
+updates.
+
+Q: What should the first node’s previous pointer contain? A: NULL.
+
+Q: What should the last node’s next pointer contain? A: NULL.
+
+Q: Can we move backward in a singly linked list? A: Not directly,
+because it stores only the next pointer.
+
+============================================================ 5. SPARSE
+MATRIX – STUDENT GRADES
+============================================================
+
+DEFINITIONS Matrix: A rectangular arrangement of elements in rows and
+columns. Sparse Matrix: A matrix in which most elements are zero.
+Non-zero Element: An element whose value is not zero. Triplet
+Representation: A common array representation storing each non-zero
+element as row, column, and value, often with a header describing
+dimensions and count.
+
+WHAT TO SAY WHILE EXPLAINING “My program manages student grades in a
+matrix. Rows represent students and columns represent subjects. Since
+many entries are zero, the matrix is sparse. Storing only non-zero
+values can reduce memory usage.”
+
+“The program processes the grade data to calculate subject-wise
+averages, identify students with the highest grades, and find the
+subject with the highest average. The exact calculations depend on
+whether zero means an actual grade or a missing/not-taken subject; the
+program must follow the problem’s data convention.”
+
+COMPLEXITY - Scanning a full r by c matrix: O(r × c). - Processing a
+triplet list with k non-zero entries: often O(k), plus any required
+grouping or indexing. - Full matrix storage: O(r × c). - Sparse triplet
+storage: O(k), plus small metadata.
+
+IMPORTANT VIVA QUESTIONS Q: Why is it called sparse? A: Because most
+matrix entries are zero.
+
+Q: Why store only non-zero values? A: To save memory when the number of
+non-zero entries is much smaller than the total number of entries.
+
+Q: What information does a triplet store? A: Row index, column index,
+and value.
+
+Q: Is every zero necessarily a missing value? A: No. The program must
+follow the meaning specified by the dataset or problem.
+
+============================================================ 6. STACK –
+TEXT EDITOR UNDO
+============================================================
+
+DEFINITIONS Stack: A linear data structure that follows LIFO – Last In,
+First Out. Push: Adds an element to the top of the stack. Pop: Removes
+and returns the top element. Peek/Top: Reads the top element without
+removing it. Overflow: Attempting to push into a full fixed-size stack.
+Underflow: Attempting to pop from an empty stack.
+
+WHAT TO SAY WHILE EXPLAINING “My program uses a stack to store
+text-editing actions. Whenever the user performs an action such as
+insertion or deletion, the action details are pushed onto the stack.
+When undo is selected, the most recent action is popped and reversed.”
+
+“To reverse an action correctly, the program needs enough information
+about the action, such as the operation type, affected text, and
+position.”
+
+COMPLEXITY - Push: O(1). - Pop: O(1). - Peek: O(1). - Display all stack
+entries: O(n).
+
+IMPORTANT VIVA QUESTIONS Q: Why is a stack suitable for undo? A: The
+most recent action must be undone first, which matches LIFO.
+
+Q: What is the difference between pop and peek? A: Pop removes the top
+element; peek only reads it.
+
+Q: What is stack underflow? A: Trying to remove an element from an empty
+stack.
+
+Q: What is the stack top? A: The position/index or reference of the most
+recently inserted element.
+
+============================================================ 7. INFIX TO
+POSTFIX AND PREFIX CONVERSION
+============================================================
+
+DEFINITIONS Infix: Operator is written between operands, for example A +
+B. Postfix: Operator is written after operands, for example AB+. Prefix:
+Operator is written before operands, for example +AB. Operand: A value
+or variable on which an operator acts. Operator Precedence: The priority
+of operators, such as multiplication before addition. Associativity: The
+direction in which operators of equal precedence are grouped, such as
+left-to-right or right-to-left. Parentheses: Symbols used to control
+grouping and evaluation order.
+
+WHAT TO SAY WHILE EXPLAINING “My program accepts an infix expression and
+converts it into postfix and prefix notation using a stack. The stack
+temporarily stores operators and parentheses so that precedence and
+associativity are handled correctly.”
+
+“For postfix conversion, operands are sent directly to the output.
+Operators are pushed or popped according to precedence and
+associativity. Parentheses control when operators are removed from the
+stack. At the end, remaining operators are added to the output.”
+
+“For prefix conversion, the implementation may reverse the infix
+expression, interchange parentheses, perform a postfix-style conversion,
+and reverse the result. The associativity rules must be handled
+carefully.”
+
+COMPLEXITY - Usually O(n) time for an expression of n tokens, because
+each token is processed a limited number of times. - O(n) auxiliary
+space in the worst case for the stack/output.
+
+IMPORTANT VIVA QUESTIONS Q: Why do we use a stack? A: It temporarily
+stores operators and helps process precedence, associativity, and
+parentheses.
+
+Q: Which has higher precedence, + or *? A: Multiplication has higher
+precedence than addition.
+
+Q: What is the postfix form of A+BC? A: ABC+.
+
+Q: What is the prefix form of A+BC? A: +ABC.
+
+Q: Does postfix require parentheses to show precedence? A: No. The
+operator position makes the evaluation order explicit.
+
+Q: What is associativity of subtraction? A: Usually left-to-right, so
+A-B-C means (A-B)-C.
+
+============================================================ 8. QUEUE –
+RESTAURANT ORDERS
+============================================================
+
+DEFINITIONS Queue: A linear data structure that follows FIFO – First In,
+First Out. Enqueue: Inserts an element at the rear. Dequeue: Removes an
+element from the front. Front: The first element waiting to be
+processed. Rear: The last element in the queue. FIFO: The first item
+inserted is the first item removed.
+
+WHAT TO SAY WHILE EXPLAINING “My program manages restaurant orders using
+a queue. When a customer places an order, it is inserted at the rear.
+When the kitchen processes an order, the order at the front is removed.
+This ensures that orders are handled in arrival order.”
+
+COMPLEXITY - Enqueue: O(1) in a properly implemented circular or linked
+queue; may be O(1) in an array queue with front/rear indices. - Dequeue:
+O(1) in a properly implemented queue. - Peek front: O(1). - Display:
+O(n).
+
+IMPORTANT VIVA QUESTIONS Q: Why is a queue suitable for customer orders?
+A: Orders should normally be processed in the same order in which they
+arrive, which follows FIFO.
+
+Q: What is the difference between stack and queue? A: Stack follows
+LIFO; queue follows FIFO.
+
+Q: What is queue underflow? A: Trying to remove an item from an empty
+queue.
+
+Q: What is a circular queue? A: A queue in which the last array position
+connects logically back to the first, allowing freed positions to be
+reused.
+
+============================================================ 9. BINARY
+SEARCH TREE – INSERT, DELETE, SEARCH, TRAVERSAL, DEPTH
+============================================================
+
+DEFINITIONS Tree: A non-linear hierarchical data structure made of nodes
+and edges. Binary Tree: A tree in which each node has at most two
+children. Binary Search Tree (BST): A binary tree where values in the
+left subtree are smaller than the node and values in the right subtree
+are larger, according to the implementation’s duplicate policy. Root:
+The topmost node. Leaf: A node with no children. Subtree: A node
+together with its descendants. Depth/Height: Terminology can vary. Depth
+usually measures edges from the root to a node; tree height is the
+maximum depth. State the definition used by your code. Traversal:
+Visiting all nodes in a specified order.
+
+WHAT TO SAY WHILE EXPLAINING “My program implements a binary search
+tree. Each node stores a value and links to its left and right children.
+Insertion follows the BST ordering rule. Searching compares the key with
+the current node and moves left or right. Deletion handles three cases:
+a leaf node, a node with one child, and a node with two children.”
+
+“Traversal displays the nodes in a particular order. Inorder visits
+left, root, right; preorder visits root, left, right; postorder visits
+left, right, root.”
+
+“The depth or height operation calculates the tree’s level/maximum path
+according to the definition used in the program.”
+
+DUPLICATES The implementation must choose a policy: reject duplicates,
+count duplicates, or consistently place equal values on one side.
+Explain the policy actually used in your code.
+
+COMPLEXITY - Average insert/search/delete: O(log n) for a reasonably
+balanced BST. - Worst-case insert/search/delete: O(n) if the tree
+becomes skewed. - Traversal: O(n). - Height calculation: O(n).
+
+IMPORTANT VIVA QUESTIONS Q: Why is it called a binary search tree? A:
+Each node has at most two children and follows the search-order
+property.
+
+Q: What are the three deletion cases? A: Deleting a leaf, deleting a
+node with one child, and deleting a node with two children.
+
+Q: What is an inorder traversal of a BST? A: Left, root, right. It
+produces values in sorted order when the BST ordering rule is followed.
+
+Q: What is a skewed tree? A: A tree where nodes mostly have only one
+child, making it similar to a linked list.
+
+Q: What is the worst-case search complexity? A: O(n).
+
+============================================================ 10. AVL
+TREE ============================================================
+
+DEFINITIONS AVL Tree: A self-balancing Binary Search Tree. Balance
+Factor: Height of left subtree minus height of right subtree (some
+implementations use the opposite sign). Balanced Node: In an AVL tree,
+the balance factor must be -1, 0, or +1. Rotation: A restructuring
+operation used to restore AVL balance. LL Case: Fixed using a right
+rotation. RR Case: Fixed using a left rotation. LR Case: Fixed using a
+left rotation on the left child, then a right rotation. RL Case: Fixed
+using a right rotation on the right child, then a left rotation.
+
+WHAT TO SAY WHILE EXPLAINING “My program implements an AVL tree, which
+is a self-balancing binary search tree. It follows the BST ordering
+property but also maintains balance after insertion and deletion.”
+
+“After modifying the tree, the program updates node heights and
+calculates balance factors. If a node becomes unbalanced, the
+appropriate rotation is applied: LL, RR, LR, or RL.”
+
+COMPLEXITY - Search: O(log n). - Insert: O(log n). - Delete: O(log n). -
+Rotations: O(1) for each local rotation. - The tree remains
+height-balanced, so operations avoid the linear worst case of an
+ordinary BST.
+
+IMPORTANT VIVA QUESTIONS Q: Why do we need an AVL tree? A: To prevent a
+BST from becoming skewed and to keep search, insertion, and deletion
+efficient.
+
+Q: What is the allowed balance factor? A: -1, 0, or +1, using left
+height minus right height.
+
+Q: How many rotation cases are there? A: Four: LL, RR, LR, and RL.
+
+Q: Which rotation is used for an LL imbalance? A: Right rotation.
+
+Q: Which rotation is used for an RR imbalance? A: Left rotation.
+
+============================================================ 11. GRAPH
+AND DIJKSTRA’S SHORTEST PATH
+============================================================
+
+DEFINITIONS Graph: A non-linear data structure consisting of vertices
+(nodes) and edges (connections). Vertex: A node in a graph. Edge: A
+connection between two vertices. Weighted Graph: A graph whose edges
+have weights or costs. Path: A sequence of connected vertices. Shortest
+Path: A path with the minimum total weight. Dijkstra’s Algorithm: A
+greedy algorithm that finds shortest paths from one source vertex to all
+reachable vertices in a graph with non-negative edge weights. Adjacency
+Matrix: A matrix that represents connections and weights between
+vertices. Adjacency List: A list of neighboring vertices for each
+vertex.
+
+WHAT TO SAY WHILE EXPLAINING “My program represents a computer network
+as a weighted graph. Computers are vertices and network links are
+weighted edges. Dijkstra’s algorithm calculates the shortest distance
+from a selected source computer to every other reachable computer.”
+
+“The algorithm initializes the source distance to zero and other
+distances to infinity. It repeatedly selects the unvisited vertex with
+the smallest tentative distance, then relaxes its outgoing edges. If a
+shorter route is found through the selected vertex, the distance and
+predecessor are updated.”
+
+COMPLEXITY - With adjacency matrix and simple minimum selection:
+O(V²). - With adjacency list and binary min-heap: commonly O((V + E) log
+V). - V = number of vertices; E = number of edges. - Dijkstra’s
+algorithm assumes non-negative edge weights.
+
+IMPORTANT VIVA QUESTIONS Q: Can Dijkstra’s algorithm handle negative
+edge weights correctly? A: No. It is designed for non-negative edge
+weights. Bellman-Ford is suitable when negative edges must be handled.
+
+Q: What is relaxation? A: Checking whether a route through the current
+vertex gives a shorter distance and updating the distance if it does.
+
+Q: What does infinity mean initially? A: No route has been discovered
+yet.
+
+Q: What is the source vertex? A: The starting vertex from which shortest
+paths are calculated.
+
+Q: What is the difference between a directed and undirected graph? A: A
+directed edge has a direction; an undirected edge can be traversed both
+ways.
+
+============================================================ 12. HASHING
+– STUDENT INFORMATION SYSTEM
+============================================================
+
+DEFINITIONS Hashing: A technique that maps a key to an index in a hash
+table using a hash function. Hash Function: A function that converts a
+key, such as student ID, into a table index. Hash Table: An array-based
+data structure used to store key-value records. Collision: When two
+different keys map to the same table index. Collision Resolution: A
+method used to handle collisions. Linear Probing: Checks the next table
+positions until an empty slot is found. Chaining: Stores multiple
+entries at the same index using a linked list or another collection.
+
+WHAT TO SAY WHILE EXPLAINING “My program stores student records using
+hashing. The student ID is used as the key. A hash function calculates
+the table index where the record should be stored. To retrieve a
+student, the program hashes the ID and searches the corresponding
+location.”
+
+“If two IDs produce the same index, a collision occurs. The program
+handles it using the collision-resolution method implemented in the
+code, such as linear probing or chaining.”
+
+COMPLEXITY - Average insert/search: O(1) with a good hash function and
+controlled load factor. - Worst-case insert/search: O(n) if many keys
+collide. - Load Factor: Number of stored entries divided by table
+capacity.
+
+IMPORTANT VIVA QUESTIONS Q: What is a collision? A: When different keys
+produce the same hash-table index.
+
+Q: Why use hashing? A: It can provide very fast average-case insertion
+and retrieval by key.
+
+Q: What makes a good hash function? A: It should be fast and distribute
+keys uniformly across the table.
+
+Q: What is linear probing? A: A collision-resolution method that checks
+subsequent slots until an available position is found.
+
+Q: What is load factor? A: The ratio of the number of stored entries to
+the table capacity.
+
+============================================================ 13. SORT
+PRODUCT RECORDS
+============================================================
+
+DEFINITIONS Product Record: A collection of related fields such as
+product ID, name, and price. Sorting: Arranging records by a selected
+key, such as price or product name. Sorting Key: The field used to
+decide the order of records.
+
+WHAT TO SAY WHILE EXPLAINING “My program stores product records for an
+online shopping system. It sorts the products by price or name using the
+selected sorting algorithm. The complete record is moved or swapped so
+that the product details remain together.”
+
+Then explain the algorithm used: - Bubble Sort: Compare adjacent
+products and swap when out of order. - Selection Sort: Select the next
+minimum product and place it in position. - Insertion Sort: Insert each
+product into its correct position in the sorted portion.
+
+COMPLEXITY Use the complexity of the selected algorithm: - Bubble: best
+O(n) with early stopping; average/worst O(n²). - Selection: O(n²) in
+best, average, and worst cases. - Insertion: best O(n); average/worst
+O(n²).
+
+IMPORTANT VIVA QUESTIONS Q: What is the sorting key? A: The field used
+for comparison, such as product price or product name.
+
+Q: Why must the entire record be swapped? A: To keep each product’s ID,
+name, and price associated with the correct product.
+
+Q: What is ascending order? A: Values arranged from smaller to larger,
+or alphabetically A to Z.
+
+============================================================ 14. SEARCH
+AND SORT PATIENT RECORDS
+============================================================
+
+DEFINITIONS Patient ID: A unique identifier used to distinguish a
+patient record. Searching: Finding a record using a key such as patient
+ID. Sorting: Arranging patient records by a field such as age or name.
+Unique Key: A value intended to identify one record uniquely.
+
+WHAT TO SAY WHILE EXPLAINING “My program manages patient records. It
+searches for a patient using patient ID and sorts records by age or
+name. The search algorithm compares the ID with stored records, while
+the sorting algorithm compares the selected age or name field.”
+
+“If I use linear search, records are checked one by one. If I use binary
+search, the records must first be sorted by the same search key.”
+
+COMPLEXITY - Linear search: O(n) average/worst. - Binary search: O(log
+n) average/worst, but requires sorted data. - Sorting: depends on the
+selected algorithm; common simple sorts are O(n²) average/worst.
+
+IMPORTANT VIVA QUESTIONS Q: Why use patient ID for searching? A: It is
+intended to uniquely identify a patient record and is less ambiguous
+than a name.
+
+Q: Can binary search be used on records sorted by age to search by
+patient ID? A: No. Binary search requires the collection to be sorted by
+the same key being searched.
+
+Q: Why might two patients have the same name? A: Names are not
+guaranteed to be unique, which is why a unique ID is preferable.
+
+============================================================ 15.
+INVENTORY MANAGEMENT – SINGLY LINKED LIST
+============================================================
+
+DEFINITIONS Inventory: A collection of products and their stock
+information. Product Node: A linked-list node containing product ID,
+name, quantity, price, and next pointer. Singly Linked List: A sequence
+of nodes where each node points to the next node.
+
+WHAT TO SAY WHILE EXPLAINING “My program manages inventory using a
+singly linked list. Each node represents one product and stores its ID,
+name, quantity, and price. The user can add, remove, display, and search
+for products using the product ID.”
+
+“Adding creates a node and links it into the list. Removing searches for
+the product ID and adjusts the links. Searching traverses the list until
+the ID matches or the list ends.”
+
+COMPLEXITY - Insert at head: O(1). - Search: O(n). - Delete by ID:
+O(n). - Display: O(n).
+
+IMPORTANT VIVA QUESTIONS Q: Why is product ID useful? A: It can uniquely
+identify a product record.
+
+Q: What happens when the list is empty? A: The head pointer is NULL.
+
+Q: What must be updated when deleting a middle node? A: The previous
+node’s next pointer must skip the node being deleted; memory should also
+be released where applicable.
+
+============================================================ 16. ONLINE
+SHOPPING CART – SINGLY LINKED LIST
+============================================================
+
+DEFINITIONS Shopping Cart: A collection of products selected by a
+customer before purchase. Linked List Node: Stores product details and a
+link to the next cart item. Dynamic Memory Allocation: Allocating memory
+while the program is running as new nodes are required.
+
+WHAT TO SAY WHILE EXPLAINING “My program represents the shopping cart as
+a singly linked list. Each node stores product ID, product name,
+quantity, and price. It supports adding a product, removing a product,
+displaying cart items, and searching by product ID.”
+
+“When a product is added, a node is created and linked into the cart.
+When removed, the matching node is disconnected. The list is traversed
+to display all products or search for a particular product.”
+
+COMPLEXITY - Add at head: O(1); add at end: O(n) unless a tail pointer
+is maintained. - Search: O(n). - Remove by ID: O(n). - Display: O(n).
+
+IMPORTANT VIVA QUESTIONS Q: What is the difference between a shopping
+cart and inventory? A: Inventory tracks available stock; a cart tracks
+products selected by a customer.
+
+Q: Can a linked list grow during execution? A: Yes, by allocating new
+nodes dynamically.
+
+Q: What should happen if the requested product is not found? A: The
+program should display an appropriate message and leave the list
+unchanged.
+
+============================================================ 17. MOVIE
+COLLECTION – DOUBLY LINKED LIST
+============================================================
+
+DEFINITIONS Movie Record: Data containing movie ID, title, genre, and
+release year. Doubly Linked List: A list where every node links to both
+the next and previous nodes. Forward Traversal: Moving from the first
+node towards the last. Reverse Traversal: Moving from the last node
+towards the first.
+
+WHAT TO SAY WHILE EXPLAINING “My program stores a movie collection using
+a doubly linked list. Each node contains the movie ID, title, genre,
+release year, and links to the previous and next movies.”
+
+“It supports adding and deleting movies, searching for a movie, and
+displaying the collection in both forward and reverse order. The
+previous pointer makes reverse traversal possible.”
+
+COMPLEXITY - Search: O(n). - Display forward/reverse: O(n). -
+Insert/delete at a known node: O(1), after locating it. - Insert/delete
+by movie ID: O(n) including search.
+
+IMPORTANT VIVA QUESTIONS Q: Why is a doubly linked list suitable? A: It
+supports movement in both directions, which is required for forward and
+reverse display.
+
+Q: What are the two links in each node? A: Previous and next.
+
+Q: What is the extra memory cost? A: Each node stores an additional
+previous pointer.
+
+============================================================ 18. INFIX
+TO POSTFIX AND PREFIX – SECOND PROBLEM STATEMENT
+============================================================
+
+This problem is conceptually the same as Problem 7. Explain the same
+definitions and conversion process, but also mention all required
+features: - Accept an infix expression. - Convert it to postfix. -
+Convert it to prefix. - Respect precedence and associativity. - Handle
+parentheses. - Display both converted expressions.
+
+EXAMINER-READY EXPLANATION “My program converts an infix expression into
+postfix and prefix forms using a stack. It processes operands,
+operators, and parentheses while following operator precedence and
+associativity. The stack temporarily stores operators so the final
+expression has an unambiguous evaluation order.”
+
+EXAMPLE Infix: A + B * C Postfix: ABC+ Prefix: +ABC
+
+COMPLEXITY Usually O(n) time and O(n) auxiliary space for n expression
+tokens.
+
+============================================================ 19. TEXT
+EDITOR – STACK WITH UNDO AND REDO
+============================================================
+
+DEFINITIONS Undo: Reverses the most recent editing operation. Redo:
+Reapplies an operation that was previously undone. Undo Stack: Stores
+actions that can be reversed. Redo Stack: Stores actions that were
+undone and may be reapplied. LIFO: Last In, First Out.
+
+WHAT TO SAY WHILE EXPLAINING “My program simulates a text editor using
+stacks. It stores editing operations so that the user can undo the most
+recent action and redo an action that was undone.”
+
+“When a new edit is performed, it is recorded in the undo history. When
+undo is selected, the action is reversed and moved to the redo history.
+When redo is selected, the action is applied again. A new edit after
+undo generally clears the redo history because the previous redo path is
+no longer valid.”
+
+COMPLEXITY - Stack push/pop: O(1). - Actual undo/redo cost depends on
+the operation and how text positions/content are stored. For a simple
+stored action, it may be O(1) plus the cost of editing the text.
+
+IMPORTANT VIVA QUESTIONS Q: Why are two stacks commonly used? A: One
+stores operations to undo; the other stores operations that can be
+redone.
+
+Q: What happens to redo history after a new edit? A: Usually it is
+cleared.
+
+Q: What information must an undo action store? A: Enough information to
+reverse the edit, such as operation type, text, and position.
+
+Q: Is undo the same as deleting the last character? A: Not necessarily.
+Undo reverses the last operation, which could be insertion, deletion, or
+another edit.
+
+============================================================ 20. BANKING
+SERVICE – QUEUE
+============================================================
+
+DEFINITIONS Queue: A FIFO data structure. Enqueue: Add a customer at the
+rear. Dequeue: Serve and remove the customer at the front. Front: The
+next customer to be served. Rear: The most recently added waiting
+customer.
+
+WHAT TO SAY WHILE EXPLAINING “My program manages customers waiting for
+banking services using a queue. Each customer has details such as
+customer ID and name. New customers are added at the rear, and the
+customer at the front is served first.”
+
+“The program can display all waiting customers and show the customer at
+the front without removing them.”
+
+COMPLEXITY - Enqueue: O(1) in a suitable queue implementation. -
+Dequeue: O(1) in a suitable queue implementation. - Peek front: O(1). -
+Display: O(n).
+
+IMPORTANT VIVA QUESTIONS Q: Why does a bank use a queue model? A:
+Customers are generally served in the order in which they arrive.
+
+Q: What is FIFO? A: First In, First Out.
+
+Q: Does displaying the front customer remove them? A: No. Only dequeue
+removes the front customer.
+
+============================================================ 21. BINARY
+SEARCH TREE – COPY, PARENT/CHILD, TRAVERSAL, LEAF NODES
+============================================================
+
+DEFINITIONS Binary Search Tree: A binary tree where left-subtree values
+follow the smaller-key rule and right-subtree values follow the
+larger-key rule. Copy of a Tree: A separate tree structure containing
+the same values and arrangement as the original. Parent Node: A node
+that has one or more child nodes. Child Node: A node directly connected
+below a parent. Leaf Node: A node with no children. Traversal: Visiting
+nodes in a defined order.
+
+WHAT TO SAY WHILE EXPLAINING “My program creates a binary search tree
+and supports insertion, copying the tree, displaying parent nodes with
+their children, traversal, and displaying leaf nodes.”
+
+“During insertion, the BST ordering property decides whether a new value
+goes to the left or right. The copy operation creates a separate tree
+with the same structure and values. Parent-child display checks each
+node’s left and right links. Leaf-node display identifies nodes whose
+left and right pointers are both NULL.”
+
+“Traversal can be inorder, preorder, or postorder depending on the
+program.”
+
+COMPLEXITY - Insert: O(log n) average, O(n) worst. - Copy entire tree:
+O(n), because every node is visited and recreated. - Parent-child
+display: O(n). - Traversal: O(n). - Leaf-node display: O(n).
+
+IMPORTANT VIVA QUESTIONS Q: What is a leaf node? A: A node with no left
+or right child.
+
+Q: What is a parent node? A: A node that has at least one child.
+
+Q: Why make a copy of a tree? A: To create an independent structure with
+the same data, so changes to one need not affect the other if a deep
+copy is used.
+
+Q: What is the difference between shallow copy and deep copy? A: A
+shallow copy may copy references to existing nodes; a deep copy creates
+new nodes and duplicates the structure.
+
+Q: How do you identify a leaf node? A: Both its left and right child
+pointers are NULL.
+
+============================================================ COMMON DATA
+STRUCTURES DEFINITIONS – QUICK REVISION
+============================================================
+
+1.  Data Structure A way of organizing and storing data so it can be
+    accessed and modified efficiently.
+
+2.  Algorithm A finite sequence of well-defined steps used to solve a
+    problem.
+
+3.  Array A collection of elements stored in contiguous memory locations
+    and accessed using an index.
+
+4.  Pointer A variable that stores the memory address of another
+    variable or object.
+
+5.  Dynamic Memory Allocation Allocating memory during program execution
+    as needed.
+
+6.  Node A basic unit of a linked list, tree, or graph that stores data
+    and links.
+
+7.  Linear Data Structure A structure in which elements are arranged
+    sequentially, such as arrays, linked lists, stacks, and queues.
+
+8.  Non-linear Data Structure A structure in which elements are not
+    arranged in one simple sequence, such as trees and graphs.
+
+9.  LIFO Last In, First Out. Used by stacks.
+
+10. FIFO First In, First Out. Used by queues.
+
+11. Recursion A technique in which a function calls itself to solve
+    smaller versions of a problem. A base case stops the recursion.
+
+12. Time Complexity A measure of how an algorithm’s running time grows
+    with input size.
+
+13. Space Complexity A measure of how much memory an algorithm uses as
+    input size grows.
+
+14. Big O Notation Describes an asymptotic upper bound on growth,
+    commonly used to express worst-case complexity.
+
+15. O(1) Constant time; work does not grow with input size.
+
+16. O(log n) Logarithmic time; the search space is reduced by a constant
+    factor, as in binary search.
+
+17. O(n) Linear time; work grows proportionally to the number of
+    elements.
+
+18. O(n log n) Common efficiency class for fast comparison sorting
+    algorithms such as merge sort and heap sort.
+
+19. O(n²) Quadratic time; often occurs with two nested loops over the
+    input, as in simple comparison sorts.
+
+20. Overflow Trying to insert into a full fixed-capacity data structure.
+
+21. Underflow Trying to remove an item from an empty data structure.
+
+============================================================ COMPLEXITY
+CHEAT SHEET ============================================================
+
+LINEAR SEARCH Best: O(1) Average: O(n) Worst: O(n)
+
+BINARY SEARCH (SORTED DATA) Best: O(1) Average: O(log n) Worst: O(log n)
+
+BUBBLE SORT Best: O(n) with early-stop optimization Average: O(n²)
+Worst: O(n²)
+
+SELECTION SORT Best: O(n²) Average: O(n²) Worst: O(n²)
+
+INSERTION SORT Best: O(n) Average: O(n²) Worst: O(n²)
+
+SINGLY LINKED LIST Insert at head: O(1) Search: O(n) Delete by key: O(n)
+Traverse: O(n)
+
+DOUBLY LINKED LIST Search: O(n) Traverse: O(n) Insert/delete at known
+node: O(1)
+
+STACK Push: O(1) Pop: O(1) Peek: O(1)
+
+QUEUE Enqueue: O(1) in suitable implementation Dequeue: O(1) in suitable
+implementation Front/peek: O(1)
+
+BINARY SEARCH TREE Average search/insert/delete: O(log n) Worst
+search/insert/delete: O(n) Traversal: O(n)
+
+AVL TREE Search/insert/delete: O(log n)
+
+DIJKSTRA Adjacency matrix + simple selection: O(V²) Adjacency list +
+binary heap: O((V+E) log V)
+
+HASH TABLE Average search/insert: O(1) Worst search/insert: O(n)
+
+============================================================ HOW TO
+ANSWER “EXPLAIN YOUR CODE” IN THE VIVA
+============================================================
